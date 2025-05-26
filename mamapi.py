@@ -398,6 +398,9 @@ def saveData() -> None:
     }
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(saveDict, f, indent=4, cls=TimeEnabledJSONEncoder)
+    with open(latest_mam_path,"w", encoding="utf-8") as f:
+        f.write(state.last_update_mamid)
+
     prowlarr = os.getenv("UPDATE_PROWLARR")
     if prowlarr and state.last_update_mamid:
         update_prowlarr(state.last_update_mamid)
